@@ -1,12 +1,16 @@
-import { Box, TextField } from '@mui/material'
-import { useFormContext, Controller } from 'react-hook-form'
-import { Customer } from '~/models/Customer'
+import { Box, Button, Fab, FormHelperText, TextField } from '@mui/material'
+import { LegacyRef, useEffect, useState } from 'react'
+import { Controller, useFormContext } from 'react-hook-form'
+import CloseIcon from '@mui/icons-material/Close'
 
+interface Props {
+  currentImage?: string
+}
 interface FormFields {
   name: string
   nit: string
   contact: string
-  logo: string
+  logo: File
   address: string
   socialReason: string
   phone: string
@@ -19,16 +23,71 @@ interface FormFields {
  * Contacto, Logo, Nit, Dirección, Razón Social, Teléfono, Correo, y Dirección Web
  * contact, logo, nit, address, socialReason, phone, email, webpage
  */
-const CustomerCreateFields: React.FC<Props> = () => {
+const CustomerCreateFields: React.FC<Props> = ({ currentImage }) => {
+  const [selectedImage, setSelectedImage] = useState<File>(null)
+  const [showImage, setShowImage] = useState<boolean>(!!selectedImage || !!currentImage)
+
   const {
     register,
     formState: { errors },
+    setValue,
+    getValues,
   } = useFormContext<FormFields>()
+
+  const handleFileChange = (e) => {
+    if (e?.target?.files && e?.target?.files?.length > 0) {
+      const logo: File = e.target.files[0]
+      setValue('logo', logo)
+      setSelectedImage(logo)
+    }
+  }
+
+  const removeSelectedImage = (e) => {
+    setSelectedImage(null)
+    setValue('logo', null)
+  }
 
   return (
     <>
       <Box sx={{ display: 'flex', gap: 2 }}>
+        <Button
+          component="label"
+          variant="outlined"
+          sx={{
+            height: 180,
+            mx: 'auto',
+            width: 320,
+            background: showImage ? `no-repeat center/100% url(${URL.createObjectURL(selectedImage)})` : '',
+            position: 'relative',
+          }}
+        >
+          {!showImage ? (
+            'Añade un logo'
+          ) : (
+            <Fab
+              color="primary"
+              aria-label="Quita este logo"
+              size="small"
+              sx={{ position: 'absolute', top: -20, right: -20 }}
+              onClick={removeSelectedImage}
+            >
+              <CloseIcon />
+            </Fab>
+          )}
+          <input
+            id="logo"
+            name="logo"
+            type="file"
+            accept="image/*"
+            {...register('logo')}
+            onChange={handleFileChange}
+            hidden
+          />
+        </Button>
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2 }}>
         <TextField
+          autoFocus
           error={!!errors.name}
           margin="dense"
           id="name"

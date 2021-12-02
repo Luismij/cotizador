@@ -3,7 +3,7 @@ export interface Customer {
   name: string
   nit: string
   socialReason?: string
-  logo?: string
+  logo?: string | File
   internalComment?: string
   email?: string
   phone?: string

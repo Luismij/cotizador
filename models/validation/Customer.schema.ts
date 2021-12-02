@@ -8,19 +8,20 @@ import 'yup-phone-lite'
  */
 const CustomerSchema = yup
   .object({
-    name: yup.string().required(''),
+    name: yup.string().trim().required(''),
     nit: yup
       .string()
+      .trim()
       .matches(/^(\d+|(\d{3}\.?)*)(\s?-?\s?\d)?$/, 'El nit solo contiene dígitos. e.g. XXX.XXX.XXX-Y')
       .typeError('El nit solo contiene dígitos. e.g. XXX.XXX.XXX - Y')
       .required(''),
-    contact: yup.string(),
+    contact: yup.string().trim(),
     logo: yup.mixed(),
-    address: yup.string(),
-    socialReason: yup.string(),
-    phone: yup.string().phone('CO', 'El teléfono debe ser un teléfono válido'),
-    email: yup.string().email('El email debe ser un email válido'),
-    webpage: yup.string().url('La página web debe ser una url válida'),
+    address: yup.string().trim(),
+    socialReason: yup.string().trim(),
+    phone: yup.string().trim().phone('CO', 'El teléfono debe ser un teléfono válido'),
+    email: yup.string().trim().email('El email debe ser un email válido'),
+    webpage: yup.string().trim().url('La página web debe ser una url válida'),
   })
   .required()
 

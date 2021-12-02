@@ -46,15 +46,14 @@ const Clientes: NextPageComposed<Props> = ({ initialCustomers, error }: Props) =
   const { handleSubmit, setValue } = createFormMethods
 
   const editFormMethods = useForm({ resolver: yupResolver(CustomerSchema) })
-  const { handleSubmit: handleSubmitEdit, setValue: setValueEdit } = editFormMethods
+  const { handleSubmit: handleSubmitEdit, setValue: setValueEdit, getValues } = editFormMethods
 
   useEffect(() => {
     if (selectedCustomer) {
       Object.entries(selectedCustomer).forEach(([key, value]) => setValueEdit(key, value ?? ''))
-      setValueEdit('name', selectedCustomer.name)
     }
     return () => {}
-  }, [selectedCustomer, setValueEdit])
+  }, [selectedCustomer, setValueEdit, getValues])
 
   // Create dialog
   const onCreateSubmit = async (data: Customer) => {
@@ -106,7 +105,6 @@ const Clientes: NextPageComposed<Props> = ({ initialCustomers, error }: Props) =
   }
 
   const handleEditClick = (e: MouseEvent = null, customer: Customer) => {
-    console.log(customer)
     setSelectedCustomer(customer)
     setEditFormOpen(true)
   }
@@ -188,12 +186,12 @@ const Clientes: NextPageComposed<Props> = ({ initialCustomers, error }: Props) =
         <FormDialog
           open={editFormOpen}
           handleClose={handleEditClose}
-          title="Añade un cliente"
+          title="Edita un cliente"
           onSubmit={handleSubmitEdit(onEditSubmit)}
           keepMounted
         >
           <FormProvider {...editFormMethods}>
-            <CustomerFields customer={selectedCustomer} />
+            <CustomerFields />
           </FormProvider>
         </FormDialog>
         <DeleteDialog

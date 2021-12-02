@@ -2,15 +2,29 @@ import { Customer } from '~/models/Customer'
 import axios from '~/lib/axios'
 
 export const createOne = async (data: Customer, accessToken: string): Promise<Customer> => {
-  const { data: customer } = await axios.post('/customers', data, {
-    headers: { Authorization: `Bearer ${accessToken}` },
+  console.log(data)
+
+  const formData = new FormData()
+  Object.entries(data).forEach(([key, value]) => {
+    formData.append(key, value)
+  })
+
+  const { data: customer } = await axios.post('/customers', formData, {
+    headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'multipart/form-data' },
   })
   return customer
 }
 
 export const updateOne = async (id: number, data: Customer, accessToken: string): Promise<Customer> => {
-  const { data: customer } = await axios.patch(`/customers/${id}`, data, {
-    headers: { Authorization: `Bearer ${accessToken}` },
+  console.log(data)
+
+  const formData = new FormData()
+  Object.entries(data).forEach(([key, value]) => {
+    formData.append(key, value)
+  })
+
+  const { data: customer } = await axios.patch(`/customers/${id}`, formData, {
+    headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'multipart/form-data' },
   })
   return customer
 }
