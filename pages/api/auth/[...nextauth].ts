@@ -72,7 +72,7 @@ export default NextAuth({
   // https://next-auth.js.org/configuration/options#jwt
   //
   jwt: {
-    // signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
+    signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
   },
 
   // You can define custom pages to override the built-in ones. These will be regular Next.js pages
