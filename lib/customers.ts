@@ -2,8 +2,6 @@ import { Customer } from '~/models/Customer'
 import axios from '~/lib/axios'
 
 export const createOne = async (data: Customer, accessToken: string): Promise<Customer> => {
-  console.log(data)
-
   const formData = new FormData()
   Object.entries(data).forEach(([key, value]) => {
     formData.append(key, value)
@@ -16,8 +14,6 @@ export const createOne = async (data: Customer, accessToken: string): Promise<Cu
 }
 
 export const updateOne = async (id: number, data: Customer, accessToken: string): Promise<Customer> => {
-  console.log(data)
-
   const formData = new FormData()
   Object.entries(data).forEach(([key, value]) => {
     formData.append(key, value)
