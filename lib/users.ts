@@ -15,3 +15,10 @@ export const updateProfile = async (data: User, accessToken: string): Promise<Us
 
   return user
 }
+
+export const getProfile = async (accessToken: string): Promise<User> => {
+  const { data: profile } = await axios.get<User>(`/profile`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  })
+  return profile
+}

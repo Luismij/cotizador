@@ -7,6 +7,7 @@ import { GetServerSideProps } from 'next'
 import { User } from '~/models/User'
 import axios from '~/lib/axios'
 import { getSession } from 'next-auth/client'
+import { getProfile } from '~/lib/users'
 
 interface Props {
   profile?: User
@@ -33,9 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const session = await getSession(ctx)
     const accessToken = session.accessToken
 
-    const { data: profile } = await axios.get<User>(`/profile`, {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    })
+    const profile = await getProfile(accessToken as string)
 
     return {
       props: {

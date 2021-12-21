@@ -3,18 +3,21 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import MenuIcon from '@mui/icons-material/Menu'
 import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
 
 import { MouseEventHandler } from 'react'
-import { useSession } from 'next-auth/client'
 import AccountMenu from '../layout/AccountMenu'
+import { User } from '~/models/User'
+import { useProfile } from '~/hooks/useProfile'
+import Image from 'next/image'
+import { mediaLoader } from '~/lib/media'
 
 interface Props {
   toggleDrawer: MouseEventHandler<HTMLButtonElement>
 }
 
 const Header: React.FC<Props> = ({ toggleDrawer }) => {
-  const [session, loading] = useSession()
-  const user = session.user ?? null
+  const { data: profile, status } = useProfile()
 
   return (
     <AppBar elevation={0} sx={{ gridColumn: '1 / 3' }}>
@@ -23,6 +26,11 @@ const Header: React.FC<Props> = ({ toggleDrawer }) => {
           pr: '24px', // keep right padding when drawer closed
         }}
       >
+        {profile?.logo && (
+          <Box sx={{ position: 'relative', width: 100, height: 50, mr: 4 }}>
+            <Image loader={mediaLoader} src={profile?.logo} alt={profile?.name} layout="fill" objectFit="contain" />
+          </Box>
+        )}
         <IconButton
           onClick={toggleDrawer}
           edge="start"
@@ -37,7 +45,7 @@ const Header: React.FC<Props> = ({ toggleDrawer }) => {
         <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
           {' '}
         </Typography>
-        <AccountMenu />
+        <AccountMenu profile={profile} />
       </Toolbar>
     </AppBar>
   )

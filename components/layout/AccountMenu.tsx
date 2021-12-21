@@ -9,16 +9,18 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 
 import Link from '../base/Link'
-import { User } from '~/models/User'
 import { useState } from 'react'
 import { signOut } from 'next-auth/client'
+import { getMediaUrl } from '~/lib/media'
+import { User } from '~/models/User'
 
 interface Props {
-  user?: User
+  profile?: User
 }
 
-const AccountMenu: React.FC<Props> = ({ user }) => {
+const AccountMenu: React.FC<Props> = ({ profile }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
@@ -36,7 +38,7 @@ const AccountMenu: React.FC<Props> = ({ user }) => {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <Avatar></Avatar>
+        <Avatar src={getMediaUrl(profile?.logo)} alt={profile?.name}></Avatar>
       </IconButton>
       <Menu
         id="basic-menu"
