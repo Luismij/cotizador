@@ -3,6 +3,7 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import PeopleIcon from '@mui/icons-material/People'
+import PaidIcon from '@mui/icons-material/Paid'
 import Link from '~/components/base/Link'
 
 interface Props {}
@@ -20,12 +21,20 @@ const NavBarItems = (props: Props) => {
       </ListItem>
       <ListItem button>
         <Link href="/clientes" sx={{ display: 'flex', width: '100%', textDecoration: 'none' }} color="inherit">
-          <ListItemIcon aria-label="Dashboard">
+          <ListItemIcon aria-label="Clientes">
             <PeopleIcon />
           </ListItemIcon>
           <ListItemText primary="Clientes" />
         </Link>
       </ListItem>
+      {/* <ListItem button>
+        <Link href="/clientes" sx={{ display: 'flex', width: '100%', textDecoration: 'none' }} color="inherit">
+          <ListItemIcon aria-label="Cotizaciones">
+            <PaidIcon />
+          </ListItemIcon>
+          <ListItemText primary="Cotizaciones" />
+        </Link>
+      </ListItem> */}
     </>
   )
 }

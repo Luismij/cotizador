@@ -6,7 +6,7 @@ interface Props {
   label?: string
 }
 
-const CrudHeader: React.FC<Props> = ({ label, children }) => {
+const SectionHeader: React.FC<Props> = ({ label, children }) => {
   return (
     <Paper sx={{ px: 4, py: 2, borderLeft: '0px' }} square>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -19,4 +19,4 @@ const CrudHeader: React.FC<Props> = ({ label, children }) => {
   )
 }
 
-export default CrudHeader
+export default SectionHeader

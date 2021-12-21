@@ -1,18 +1,21 @@
-import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import MenuIcon from '@mui/icons-material/Menu'
-import LogoutIcon from '@mui/icons-material/Logout'
 import AppBar from '@mui/material/AppBar'
+
 import { MouseEventHandler } from 'react'
-import { signOut } from 'next-auth/client'
+import { useSession } from 'next-auth/client'
+import AccountMenu from '../layout/AccountMenu'
 
 interface Props {
   toggleDrawer: MouseEventHandler<HTMLButtonElement>
 }
 
 const Header: React.FC<Props> = ({ toggleDrawer }) => {
+  const [session, loading] = useSession()
+  const user = session.user ?? null
+
   return (
     <AppBar elevation={0} sx={{ gridColumn: '1 / 3' }}>
       <Toolbar
@@ -34,10 +37,7 @@ const Header: React.FC<Props> = ({ toggleDrawer }) => {
         <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
           {' '}
         </Typography>
-        <Button onClick={() => signOut()} color="inherit">
-          Cerrar sesión
-          <LogoutIcon sx={{ ml: 1 }} />
-        </Button>
+        <AccountMenu />
       </Toolbar>
     </AppBar>
   )

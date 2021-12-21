@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper'
 import Snackbar from '@mui/material/Snackbar'
 import AddIcon from '@mui/icons-material/Add'
 import FormDialog from '~/components/base/FormDialog'
-import CrudHeader from '~/components/layout/CrudHeader'
+import SectionHeader from '~/components/layout/SectionHeader'
 import CustomerDataGrid from '~/components/datagrid/customer/CustomerDataGrid'
 import CustomerFields from '~/components/customer/CustomerFields'
 import CustomerSchema from '~/models/validation/Customer.schema'
@@ -160,13 +160,13 @@ const Clientes: NextPageComposed<Props> = ({ initialCustomers, error }: Props) =
   }
 
   return (
-    <>
-      <CrudHeader label="Clientes">
+    <Box bgcolor="grey.50">
+      <SectionHeader label="Clientes">
         <Button variant="contained" onClick={handleCreateOpen}>
           <AddIcon sx={{ mr: 1 }} />
           Añade un cliente
         </Button>
-      </CrudHeader>
+      </SectionHeader>
       <Box sx={{ mx: 'auto', p: 2 }}>
         <Paper>
           <CustomerDataGrid customers={customers} onDeleteClick={handleDeleteClick} onEditClick={handleEditClick} />
@@ -216,7 +216,7 @@ const Clientes: NextPageComposed<Props> = ({ initialCustomers, error }: Props) =
           {snackbarOptions.message}
         </Alert>
       </Snackbar>
-    </>
+    </Box>
   )
 }
 

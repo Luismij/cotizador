@@ -28,7 +28,6 @@ const Default: React.FC<Props> = ({ children }) => {
             flexGrow: 1,
             overflow: 'auto',
           }}
-          bgcolor="grey.50"
         >
           <Toolbar />
           <Box>{children}</Box>

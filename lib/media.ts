@@ -1,3 +1,5 @@
+import { ImageLoader } from 'next/image'
+
 export const getMediaUrl = (name: string): string => {
   if (!name) return ''
 
@@ -8,4 +10,12 @@ export const getMediaUrl = (name: string): string => {
   }
 
   return `${API_URL}${name}`
+}
+
+export const mediaLoader: ImageLoader = ({ src, width, quality }) => {
+  return getMediaUrl(src)
+}
+
+export const blobLoader: ImageLoader = ({ src, width, quality }) => {
+  if (src) return `${src}`
 }
