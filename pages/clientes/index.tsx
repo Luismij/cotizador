@@ -196,7 +196,7 @@ const Clientes: NextPageComposed<Props> = ({ initialCustomers, error }: Props) =
           keepMounted
         >
           <FormProvider {...editFormMethods}>
-            <CustomerFields />
+            <CustomerFields customer={selectedCustomer} key={selectedCustomer?.id} />
           </FormProvider>
         </FormDialog>
         <DeleteDialog
