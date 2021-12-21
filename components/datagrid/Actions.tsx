@@ -1,4 +1,4 @@
-import { IconButton } from '@mui/material'
+import IconButton from '@mui/material/IconButton'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/DeleteForever'
 import { MouseEvent, MouseEventHandler } from 'react'

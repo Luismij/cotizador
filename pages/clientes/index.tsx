@@ -8,8 +8,13 @@ import { useForm, FormProvider } from 'react-hook-form'
 // https://github.com/react-hook-form/resolvers/issues/271
 // eslint-disable-next-line
 const { yupResolver } = require('@hookform/resolvers/yup')
-import { Alert, AlertColor, Box, Button, Paper, Snackbar, TextField } from '@mui/material'
-import { Add } from '@mui/icons-material'
+import Alert from '@mui/material/Alert'
+import { AlertColor } from '@mui/material/Alert'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Paper from '@mui/material/Paper'
+import Snackbar from '@mui/material/Snackbar'
+import AddIcon from '@mui/icons-material/Add'
 import FormDialog from '~/components/base/FormDialog'
 import CrudHeader from '~/components/layout/CrudHeader'
 import CustomerDataGrid from '~/components/datagrid/customer/CustomerDataGrid'
@@ -43,7 +48,7 @@ const Clientes: NextPageComposed<Props> = ({ initialCustomers, error }: Props) =
   })
 
   const createFormMethods = useForm({ resolver: yupResolver(CustomerSchema) })
-  const { handleSubmit, setValue } = createFormMethods
+  const { handleSubmit } = createFormMethods
 
   const editFormMethods = useForm({ resolver: yupResolver(CustomerSchema) })
   const { handleSubmit: handleSubmitEdit, setValue: setValueEdit, getValues } = editFormMethods
@@ -156,9 +161,9 @@ const Clientes: NextPageComposed<Props> = ({ initialCustomers, error }: Props) =
 
   return (
     <>
-      <CrudHeader label="Cliente">
+      <CrudHeader label="Clientes">
         <Button variant="contained" onClick={handleCreateOpen}>
-          <Add sx={{ mr: 1 }} />
+          <AddIcon sx={{ mr: 1 }} />
           Añade un cliente
         </Button>
       </CrudHeader>

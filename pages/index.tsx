@@ -1,7 +1,7 @@
 import { signIn, getProviders, getSession } from 'next-auth/client'
 import React, { useState } from 'react'
 import { GetServerSideProps } from 'next'
-import { Box, Button } from '@mui/material'
+import Box from '@mui/material/Box'
 import LoginForm from '../components/auth/LoginForm'
 
 interface State {

@@ -1,5 +1,9 @@
-import { Button, IconButton, Toolbar, Typography } from '@mui/material'
-import { Menu, Logout } from '@mui/icons-material'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import MenuIcon from '@mui/icons-material/Menu'
+import LogoutIcon from '@mui/icons-material/Logout'
 import AppBar from '@mui/material/AppBar'
 import { MouseEventHandler } from 'react'
 import { signOut } from 'next-auth/client'
@@ -25,14 +29,14 @@ const Header: React.FC<Props> = ({ toggleDrawer }) => {
             marginRight: '36px',
           }}
         >
-          <Menu />
+          <MenuIcon />
         </IconButton>
         <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
           {' '}
         </Typography>
         <Button onClick={() => signOut()} color="inherit">
           Cerrar sesión
-          <Logout sx={{ ml: 1 }} />
+          <LogoutIcon sx={{ ml: 1 }} />
         </Button>
       </Toolbar>
     </AppBar>

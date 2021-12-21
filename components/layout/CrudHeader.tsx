@@ -1,6 +1,6 @@
-import { Add } from '@mui/icons-material'
-import { Box, Button, Paper, Typography } from '@mui/material'
-import { MouseEventHandler } from 'react'
+import Paper from '@mui/material/Paper'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 
 interface Props {
   label?: string

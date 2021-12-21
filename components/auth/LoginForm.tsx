@@ -1,6 +1,13 @@
-import { Avatar, Button, Card, IconButton, InputAdornment, TextField, Typography } from '@mui/material'
-import { Visibility, VisibilityOff, LockOutlined } from '@mui/icons-material'
-import { Box } from '@mui/system'
+import Avatar from '@mui/material/Avatar'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import InputAdornment from '@mui/material/InputAdornment'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { useState } from 'react'
 
 interface Props {
@@ -25,7 +32,7 @@ const LoginForm: React.FC<Props> = ({ email, password, handleChange, handleSubmi
     <>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 4 }}>
         <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-          <LockOutlined />
+          <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
@@ -58,7 +65,7 @@ const LoginForm: React.FC<Props> = ({ email, password, handleChange, handleSubmi
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
                 >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                 </IconButton>
               </InputAdornment>
             ),

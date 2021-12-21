@@ -1,8 +1,4 @@
-import { Box, Button } from '@mui/material'
 import { GetServerSideProps } from 'next'
-import { getSession, signOut } from 'next-auth/client'
-import Sidebar from '~/components/nav/Sidebar'
-import axios from '~/lib/axios'
 import { NextPageComposed } from '~/types/NextComposed'
 
 interface Props {}

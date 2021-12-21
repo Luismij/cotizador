@@ -1,4 +1,6 @@
-import { Box, Container, CssBaseline, Grid, Toolbar } from '@mui/material'
+import Box from '@mui/material/Box'
+import CssBaseline from '@mui/material/CssBaseline'
+import Toolbar from '@mui/material/Toolbar'
 import { useState } from 'react'
 import Header from '../nav/Header'
 import Sidebar from '../nav/Sidebar'

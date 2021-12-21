@@ -1,7 +1,8 @@
-import { Divider, List, Toolbar } from '@mui/material'
+import Divider from '@mui/material/Divider'
+import List from '@mui/material/List'
+import Toolbar from '@mui/material/Toolbar'
 import MuiDrawer from '@mui/material/Drawer'
 import { styled } from '@mui/material/styles'
-import { MouseEventHandler, useState } from 'react'
 import SidebarItems from './SidebarItems'
 
 interface Props {
