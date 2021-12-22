@@ -56,13 +56,13 @@ const AccountForm: React.FC<Props> = ({ profile }) => {
   const logo = watch('logo')
 
   useEffect(() => {
-    if (profile.logo) {
+    if (profile?.logo) {
       setShowDefaultImage(true)
     }
     if (logo === null || logo?.name) {
       setShowDefaultImage(false)
     }
-  }, [logo, profile.logo])
+  }, [logo, profile?.logo])
 
   const handleFileChange = (e) => {
     if (e?.target?.files && e?.target?.files?.length > 0) {
@@ -106,9 +106,9 @@ const AccountForm: React.FC<Props> = ({ profile }) => {
             >
               {showDefaultImage && (
                 <Image
-                  src={profile.logo}
+                  src={profile?.logo}
                   loader={mediaLoader}
-                  alt={`Logo de ${profile.name}`}
+                  alt={`Logo de ${profile?.name}`}
                   layout="fill"
                   objectFit="contain"
                 />
@@ -118,7 +118,7 @@ const AccountForm: React.FC<Props> = ({ profile }) => {
                 <Image
                   src={URL.createObjectURL(logo)}
                   loader={blobLoader}
-                  alt={`Logo de ${profile.name}`}
+                  alt={`Logo de ${profile?.name}`}
                   layout="fill"
                   objectFit="contain"
                 />
