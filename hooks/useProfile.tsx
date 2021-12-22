@@ -11,11 +11,16 @@ export const useProfile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       setStatus('loading')
-      const { data: profile } = await axiosInstance.get<User>('/profile', {
-        headers: { Authorization: `Bearer ${session.accessToken as string}` },
-      })
-      setStatus('loaded')
-      setData(profile)
+      try {
+        const { data: profile } = await axiosInstance.get<User>('/profile', {
+          headers: { Authorization: `Bearer ${session.accessToken as string}` },
+        })
+        setData(profile)
+        setStatus('loaded')
+      } catch (error) {
+        setData(null)
+        setStatus('error')
+      }
     }
 
     fetchProfile()
