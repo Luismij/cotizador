@@ -1,6 +1,7 @@
 import NextAuth, { User } from 'next-auth'
 import { JWT } from 'next-auth/jwt'
 import Providers from 'next-auth/providers'
+import axiosInstance from '~/lib/axios'
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
@@ -23,19 +24,15 @@ export default NextAuth({
       },
 
       async authorize(credentials, req) {
-        const res = await fetch('http://localhost:3001/auth/login', {
-          method: 'POST',
-          body: JSON.stringify(credentials),
-          headers: { 'Content-Type': 'application/json' },
-        })
-
-        const user = await res.json()
-
-        if (res.ok && user) {
-          return user
+        try {
+          const res = await axiosInstance.post('/auth/login', credentials)
+          const user = await res.data
+          if (user) {
+            return user
+          }
+        } catch (error) {
+          return null
         }
-
-        return null
       },
     }),
   ],
