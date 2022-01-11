@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next'
+import Head from 'next/head'
 import { NextPageComposed } from '~/types/NextComposed'
 
 interface Props {}
@@ -6,6 +7,9 @@ interface Props {}
 const Dashboard: NextPageComposed<Props> = () => {
   return (
     <>
+      <Head>
+        <title>Dashboard</title>
+      </Head>
       <div>Dashboard</div>
     </>
   )
