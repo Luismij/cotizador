@@ -23,7 +23,7 @@ const Cuenta: NextPageComposed<Props> = ({ profile }) => {
         <Typography variant="body2" sx={{ mb: 4 }}>
           Administra la información de tu cuenta.
         </Typography>
-        <AccountForm profile={profile} />
+        {profile ? <AccountForm profile={profile} /> : <Box>Hubo un error encontrando tu perfil</Box>}
       </Box>
     </Container>
   )

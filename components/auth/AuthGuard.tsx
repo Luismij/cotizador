@@ -1,6 +1,7 @@
 // AuthGuard.tsx
 import { signIn, useSession } from 'next-auth/client'
 import { useEffect } from 'react'
+import LoadingSpinner from '../layout/LoadingSpinner/LoadingSpinner'
 
 const AuthGuard: React.FC = ({ children, ...props }) => {
   const [session, loading] = useSession()
@@ -14,7 +15,11 @@ const AuthGuard: React.FC = ({ children, ...props }) => {
     return <>{children}</>
   }
 
-  return <div>Loading...</div>
+  return (
+    <div>
+      <LoadingSpinner />
+    </div>
+  )
 }
 
 export default AuthGuard

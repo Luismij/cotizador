@@ -159,7 +159,7 @@ const AccountForm: React.FC<Props> = ({ profile }) => {
                 variant="standard"
                 helperText={`*Requerido. ${errors.name?.message ?? ''}`}
                 error={!!errors.name}
-                defaultValue={profile.name}
+                defaultValue={profile?.name}
                 {...register('name')}
               />
               <TextField
@@ -170,7 +170,7 @@ const AccountForm: React.FC<Props> = ({ profile }) => {
                 autoComplete="off"
                 helperText={`*Requerido. ${errors.nit?.message ?? ''}`}
                 error={!!errors.nit}
-                defaultValue={profile.nit}
+                defaultValue={profile?.nit}
                 {...register('nit')}
               />
               <TextField
@@ -182,7 +182,7 @@ const AccountForm: React.FC<Props> = ({ profile }) => {
                 variant="standard"
                 error={!!errors.socialReason}
                 helperText={errors.socialReason?.message ?? ''}
-                defaultValue={profile.socialReason}
+                defaultValue={profile?.socialReason}
                 {...register('socialReason')}
               />
             </Box>
@@ -203,7 +203,7 @@ const AccountForm: React.FC<Props> = ({ profile }) => {
                 type="email"
                 error={!!errors.email}
                 helperText={errors.email?.message ?? ''}
-                defaultValue={profile.email}
+                defaultValue={profile?.email}
                 {...register('email')}
               />
               <TextField
@@ -215,7 +215,7 @@ const AccountForm: React.FC<Props> = ({ profile }) => {
                 variant="standard"
                 error={!!errors.phone}
                 helperText={errors.phone?.message ?? ''}
-                defaultValue={profile.phone}
+                defaultValue={profile?.phone}
                 {...register('phone')}
               />
               <TextField
@@ -226,7 +226,7 @@ const AccountForm: React.FC<Props> = ({ profile }) => {
                 variant="standard"
                 error={!!errors.webpage}
                 helperText={errors.webpage?.message ?? ''}
-                defaultValue={profile.webpage}
+                defaultValue={profile?.webpage}
                 {...register('webpage')}
               />
               <TextField
@@ -239,7 +239,7 @@ const AccountForm: React.FC<Props> = ({ profile }) => {
                 variant="standard"
                 error={!!errors.address}
                 helperText={errors.address?.message ?? ''}
-                defaultValue={profile.address}
+                defaultValue={profile?.address}
                 {...register('address')}
               />
             </Box>
