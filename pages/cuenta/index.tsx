@@ -8,6 +8,7 @@ import { User } from '~/models/User'
 import axios from '~/lib/axios'
 import { getSession } from 'next-auth/client'
 import { getProfile } from '~/lib/users'
+import Head from 'next/head'
 
 interface Props {
   profile?: User
@@ -15,17 +16,22 @@ interface Props {
 
 const Cuenta: NextPageComposed<Props> = ({ profile }) => {
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ px: { sm: 2, md: 4 }, py: 4 }}>
-        <Typography variant="h5" color="primary" sx={{ mb: 2 }}>
-          Cuenta
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 4 }}>
-          Administra la información de tu cuenta.
-        </Typography>
-        {profile ? <AccountForm profile={profile} /> : <Box>Hubo un error encontrando tu perfil</Box>}
-      </Box>
-    </Container>
+    <>
+      <Head>
+        <title>Cuenta</title>
+      </Head>
+      <Container maxWidth="sm">
+        <Box sx={{ px: { sm: 2, md: 4 }, py: 4 }}>
+          <Typography variant="h5" color="primary" sx={{ mb: 2 }}>
+            Cuenta
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 4 }}>
+            Administra la información de tu cuenta.
+          </Typography>
+          {profile ? <AccountForm profile={profile} /> : <Box>Hubo un error encontrando tu perfil</Box>}
+        </Box>
+      </Container>
+    </>
   )
 }
 

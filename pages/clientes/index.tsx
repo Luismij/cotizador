@@ -22,6 +22,7 @@ import CustomerFields from '~/components/customer/CustomerFields'
 import CustomerSchema from '~/models/validation/Customer.schema'
 import { createOne, deleteOne, updateOne } from '~/lib/customers'
 import DeleteDialog from '~/components/customer/DeleteDialog'
+import Head from 'next/head'
 
 interface Props {
   initialCustomers: Customer[]
@@ -160,63 +161,68 @@ const Clientes: NextPageComposed<Props> = ({ initialCustomers, error }: Props) =
   }
 
   return (
-    <Box bgcolor="grey.50">
-      <SectionHeader label="Clientes">
-        <Button variant="contained" onClick={handleCreateOpen}>
-          <AddIcon sx={{ mr: 1 }} />
-          Añade un cliente
-        </Button>
-      </SectionHeader>
-      <Box sx={{ mx: 'auto', p: 2 }}>
-        <Paper>
-          <CustomerDataGrid customers={customers} onDeleteClick={handleDeleteClick} onEditClick={handleEditClick} />
-        </Paper>
-      </Box>
-      {/* dialogs */}
-      <>
-        {/* Create dialog */}
-        <FormDialog
-          open={createFormOpen}
-          handleClose={handleCreateClose}
-          title="Añade un cliente"
-          onSubmit={handleSubmit(onCreateSubmit)}
-          keepMounted
-        >
-          <FormProvider {...createFormMethods}>
-            <CustomerFields />
-          </FormProvider>
-        </FormDialog>
+    <>
+      <Head>
+        <title>Clientes</title>
+      </Head>
+      <Box bgcolor="grey.50">
+        <SectionHeader label="Clientes">
+          <Button variant="contained" onClick={handleCreateOpen}>
+            <AddIcon sx={{ mr: 1 }} />
+            Añade un cliente
+          </Button>
+        </SectionHeader>
+        <Box sx={{ mx: 'auto', p: 2 }}>
+          <Paper>
+            <CustomerDataGrid customers={customers} onDeleteClick={handleDeleteClick} onEditClick={handleEditClick} />
+          </Paper>
+        </Box>
+        {/* dialogs */}
+        <>
+          {/* Create dialog */}
+          <FormDialog
+            open={createFormOpen}
+            handleClose={handleCreateClose}
+            title="Añade un cliente"
+            onSubmit={handleSubmit(onCreateSubmit)}
+            keepMounted
+          >
+            <FormProvider {...createFormMethods}>
+              <CustomerFields />
+            </FormProvider>
+          </FormDialog>
 
-        {/* Edit form */}
-        <FormDialog
-          open={editFormOpen}
-          handleClose={handleEditClose}
-          title="Edita un cliente"
-          onSubmit={handleSubmitEdit(onEditSubmit)}
-          keepMounted
+          {/* Edit form */}
+          <FormDialog
+            open={editFormOpen}
+            handleClose={handleEditClose}
+            title="Edita un cliente"
+            onSubmit={handleSubmitEdit(onEditSubmit)}
+            keepMounted
+          >
+            <FormProvider {...editFormMethods}>
+              <CustomerFields customer={selectedCustomer} key={selectedCustomer?.id} />
+            </FormProvider>
+          </FormDialog>
+          <DeleteDialog
+            open={deleteDialogOpen}
+            onClose={handleDeleteDialogClose}
+            name={selectedCustomer?.name}
+            onDelete={handleDelete}
+          />
+        </>
+        <Snackbar
+          open={snackbarOptions.open}
+          autoHideDuration={5000}
+          onClose={handleSnackbarClose}
+          message={snackbarOptions.message}
         >
-          <FormProvider {...editFormMethods}>
-            <CustomerFields customer={selectedCustomer} key={selectedCustomer?.id} />
-          </FormProvider>
-        </FormDialog>
-        <DeleteDialog
-          open={deleteDialogOpen}
-          onClose={handleDeleteDialogClose}
-          name={selectedCustomer?.name}
-          onDelete={handleDelete}
-        />
-      </>
-      <Snackbar
-        open={snackbarOptions.open}
-        autoHideDuration={5000}
-        onClose={handleSnackbarClose}
-        message={snackbarOptions.message}
-      >
-        <Alert onClose={handleSnackbarClose} severity={snackbarOptions.severity} sx={{ width: '100%' }}>
-          {snackbarOptions.message}
-        </Alert>
-      </Snackbar>
-    </Box>
+          <Alert onClose={handleSnackbarClose} severity={snackbarOptions.severity} sx={{ width: '100%' }}>
+            {snackbarOptions.message}
+          </Alert>
+        </Snackbar>
+      </Box>
+    </>
   )
 }
 
