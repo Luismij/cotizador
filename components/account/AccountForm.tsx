@@ -18,9 +18,7 @@ import { useSnackbar } from 'notistack'
 import Image from 'next/image'
 import { blobLoader, mediaLoader } from '~/lib/media'
 import { useEffect, useState } from 'react'
-// https://github.com/react-hook-form/resolvers/issues/271
-// eslint-disable-next-line
-const { yupResolver } = require('@hookform/resolvers/yup')
+import { yupResolver } from '@hookform/resolvers/yup'
 
 interface Props {
   profile: User
@@ -75,9 +73,9 @@ const AccountForm: React.FC<Props> = ({ profile }) => {
     setValue('logo', null)
   }
 
-  const onSubmit = async (data: User) => {
+  const onSubmit = async (data) => {
     try {
-      await updateProfile(data, session?.accessToken as string)
+      await updateProfile(data as User, session?.accessToken as string)
       enqueueSnackbar('Tu perfil se editó con éxito', { variant: 'success' })
     } catch (error) {
       enqueueSnackbar('Ocurrió un error actualizando tu perfil', { variant: 'error' })
