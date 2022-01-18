@@ -2,8 +2,12 @@ import { User } from '~/models/User'
 import axios from '~/lib/axios'
 
 export const updateProfile = async (data: User, accessToken: string): Promise<User> => {
+  // If it's a FileList, it was not updated.
+  if ((data?.logo as any) instanceof FileList) {
+    delete data.logo
+  }
+
   const formData = new FormData()
-  console.log(data.logo)
 
   Object.entries(data).forEach(([key, value]) => {
     formData.append(key, value)

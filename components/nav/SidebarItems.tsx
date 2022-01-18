@@ -28,22 +28,22 @@ const NavBarItems = (props: Props) => {
           <ListItemText primary="Clientes" />
         </Link>
       </ListItem>
-      {/* <ListItem button>
+      <ListItem button>
         <Link href="/cotizaciones" sx={{ display: 'flex', width: '100%', textDecoration: 'none' }} color="inherit">
           <ListItemIcon aria-label="Cotizaciones">
             <PaidIcon />
           </ListItemIcon>
           <ListItemText primary="Cotizaciones" />
         </Link>
-      </ListItem> */}
-      <ListItem button>
+      </ListItem>
+      {/* <ListItem button>
         <Link href="/productos" sx={{ display: 'flex', width: '100%', textDecoration: 'none' }} color="inherit">
           <ListItemIcon aria-label="Productos">
             <ShoppingCartIcon />
           </ListItemIcon>
           <ListItemText primary="Productos" />
         </Link>
-      </ListItem>
+      </ListItem> */}
     </>
   )
 }

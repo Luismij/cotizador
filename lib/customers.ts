@@ -31,3 +31,11 @@ export const deleteOne = async (id: number, accessToken: string): Promise<Custom
   })
   return customer
 }
+
+export const getMany = async (accessToken: string): Promise<Customer[]> => {
+  const { data: customers } = await axios.get<Customer[]>('/customers', {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  })
+
+  return customers
+}

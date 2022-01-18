@@ -1,6 +1,6 @@
 import { Box } from '@mui/system'
-import { DataGrid, GridApiRef, GridCallbackDetails, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
-import { MouseEvent, MouseEventHandler } from 'react'
+import { DataGrid, GridCallbackDetails, GridColDef } from '@mui/x-data-grid'
+import { MouseEvent } from 'react'
 import { Customer } from '~/models/Customer'
 import Actions from './cells/Actions'
 import ContactCell from './cells/ContactCell'

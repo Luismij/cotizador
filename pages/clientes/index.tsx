@@ -5,9 +5,7 @@ import { Customer } from '~/models/Customer'
 import { NextPageComposed } from '~/types/NextComposed'
 import { MouseEvent, useEffect, useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
-// https://github.com/react-hook-form/resolvers/issues/271
-// eslint-disable-next-line
-const { yupResolver } = require('@hookform/resolvers/yup')
+import { yupResolver } from '@hookform/resolvers/yup'
 import Alert from '@mui/material/Alert'
 import { AlertColor } from '@mui/material/Alert'
 import Box from '@mui/material/Box'
