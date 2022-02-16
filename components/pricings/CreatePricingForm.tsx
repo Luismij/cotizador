@@ -24,6 +24,8 @@ import { Customer } from '~/models/Customer'
 import { PricingDetail } from '~/models/PricingDetail'
 import { Pricing } from '~/models/Pricing'
 import PricingSchema from '~/models/validation/Pricing.schema'
+import { Product } from '~/models/Product'
+import { useState } from 'react'
 
 interface Props {
   customers: Customer[]
@@ -39,6 +41,7 @@ interface PricingFormFields {
 }
 
 const CreatePricingForm: React.FC<Props> = ({ customers, profile }) => {
+  const [products, setProducts] = useState<Product[]>([])
   const {
     control,
     register,
@@ -170,6 +173,7 @@ const CreatePricingForm: React.FC<Props> = ({ customers, profile }) => {
                   error={!!errors.details?.at(index)?.item}
                   helperText={errors.details?.at(index)?.item?.message ?? ''}
                 />
+                {/* Add autocomplete for products */}
                 <TextField
                   {...register(`details.${index}.price` as const)}
                   label="Precio"
